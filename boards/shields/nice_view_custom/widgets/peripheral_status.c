@@ -25,41 +25,7 @@ LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
 // LV_IMG_DECLARE(balloon);
 // LV_IMG_DECLARE(mountain);
-LV_IMG_DECLARE(cat00);
-LV_IMG_DECLARE(cat01);
-LV_IMG_DECLARE(cat02);
-LV_IMG_DECLARE(cat03);
-LV_IMG_DECLARE(cat04);
-LV_IMG_DECLARE(cat05);
-LV_IMG_DECLARE(cat06);
-LV_IMG_DECLARE(cat07);
-LV_IMG_DECLARE(cat08);
-LV_IMG_DECLARE(cat09);
-LV_IMG_DECLARE(cat10);
-LV_IMG_DECLARE(cat11);
-LV_IMG_DECLARE(cat12);
-LV_IMG_DECLARE(cat13);
-LV_IMG_DECLARE(cat14);
-LV_IMG_DECLARE(cat15);
-
-const lv_img_dsc_t *anim_imgs[] = {
-    &cat00,
-    &cat01,
-    &cat02,
-    &cat03,
-    &cat04,
-    &cat05,
-    &cat06,
-    &cat07,
-    &cat08,
-    &cat09,
-    &cat10,
-    &cat11,
-    &cat12,
-    &cat13,
-    &cat14,
-    &cat15
-};
+LV_IMG_DECLARE(cat);
 
 static sys_slist_t widgets = SYS_SLIST_STATIC_INIT(&widgets);
 
@@ -149,19 +115,19 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     lv_obj_align(top, LV_ALIGN_TOP_RIGHT, 0, 0);
     lv_canvas_set_buffer(top, widget->cbuf, CANVAS_SIZE, CANVAS_SIZE, LV_IMG_CF_TRUE_COLOR);
 
-    // lv_obj_t *art = lv_img_create(widget->obj);
+    lv_obj_t *art = lv_img_create(widget->obj);
     // bool random = sys_rand32_get() & 1;
     // lv_img_set_src(art, random ? &balloon : &mountain);
-    // lv_img_set_src(art, &cat1);
-    // lv_obj_align(art, LV_ALIGN_TOP_LEFT, 0, 0);
-
-    lv_obj_t * art = lv_animimg_create(widget->obj);
-    // lv_obj_center(art);
+    lv_img_set_src(art, &cat);
     lv_obj_align(art, LV_ALIGN_TOP_LEFT, 0, 0);
-    lv_animimg_set_src(art, (const void **) anim_imgs, 16); // frame count
-    lv_animimg_set_duration(art, 400 * 16); // 400ms * 16 frames
-    lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);
-    lv_animimg_start(art);
+
+    // lv_obj_t * art = lv_animimg_create(widget->obj);
+    // // lv_obj_center(art);
+    // lv_obj_align(art, LV_ALIGN_TOP_LEFT, 0, 0);
+    // lv_animimg_set_src(art, (const void **) anim_imgs, 16); // frame count
+    // lv_animimg_set_duration(art, 400 * 16); // 400ms * 16 frames
+    // lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);
+    // lv_animimg_start(art);
 
     sys_slist_append(&widgets, &widget->node);
     widget_battery_status_init();
