@@ -159,7 +159,7 @@ int zmk_widget_status_init(struct zmk_widget_status *widget, lv_obj_t *parent) {
     // lv_obj_center(art);
     lv_obj_align(art, LV_ALIGN_TOP_LEFT, 0, 0);
     lv_animimg_set_src(art, (const void **) anim_imgs, 16); // frame count
-    lv_animimg_set_duration(art, 400 * 16); // 400ms * 16 frames
+    lv_animimg_set_duration(art, 500 * 16); // 500ms * 16 frames
     lv_animimg_set_repeat_count(art, LV_ANIM_REPEAT_INFINITE);
     lv_animimg_start(art);
 
