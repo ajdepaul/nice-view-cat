@@ -35,6 +35,7 @@ LV_IMG_DECLARE(cat6);
 LV_IMG_DECLARE(cat7);
 
 const lv_img_dsc_t *anim_imgs[] = {
+    &cat0,
     &cat1,
     &cat2,
     &cat3,
